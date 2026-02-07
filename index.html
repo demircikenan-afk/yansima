@@ -42,27 +42,33 @@
                 <button class="btn btn-outline" onclick="prevDish()">⬅ GERİ</button>
                 <button class="btn btn-outline" onclick="nextDish()">SONRAKİ ➡</button>
             </div>
-            <button class="btn btn-outline" style="margin-top:20px; border-style: dashed;" onclick="openList()">🗓 AYLIK MENÜ LİSTESİ</button>
+            <button class="btn btn-outline" style="margin-top:20px; border-style: dashed;" onclick="openList()">🗓 AYLIK MENÜ ARŞİVİ</button>
         </div>
+
         <div class="modal" id="recipeModal">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                 <h2 id="modal-dish-title" style="font-family:'Playfair Display'; color:var(--dark-green);"></h2>
                 <span onclick="closeModals()" style="font-size:35px; cursor:pointer;">&times;</span>
             </div>
-            <p><strong>🛒 10 Kişilik Malzemeler:</strong><br><span id="modal-ing"></span></p>
-            <hr><p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="modal-steps"></span></p>
+            <p><strong>🛒 10 Kişilik Malzemeler:</strong><br><span id="modal-ing" style="white-space: pre-wrap;"></span></p>
+            <hr>
+            <p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="modal-steps" style="white-space: pre-wrap;"></span></p>
         </div>
+
         <div class="list-modal" id="listModal">
-            <h2 style="font-family:'Playfair Display'; color:var(--dark-green);">Aylık Yemek Arşivi</h2>
+            <h2 style="font-family:'Playfair Display'; color:var(--dark-green);">Aylık Yemek Listesi</h2>
             <div id="all-dishes-list" style="line-height:2.5; font-weight:600;"></div>
             <button class="btn btn-green" style="margin-top:20px;" onclick="closeModals()">KAPAT</button>
         </div>
     </div>
+
     <script src="data.js"></script>
     <script>
-        let currentIndex = 0; let history = [];
+        let currentIndex = 0;
+        let history = [];
+
         function render() {
-            if (typeof dishes === 'undefined') return;
+            if (typeof dishes === 'undefined' || dishes.length === 0) return;
             const dish = dishes[currentIndex];
             document.getElementById('dish-title').innerText = dish.t;
             document.getElementById('dish-sides').innerHTML = dish.s;
@@ -71,17 +77,21 @@
             document.getElementById('modal-ing').innerText = dish.i;
             document.getElementById('modal-steps').innerText = dish.p;
         }
+
         function nextDish() { history.push(currentIndex); currentIndex = Math.floor(Math.random() * dishes.length); render(); }
         function prevDish() { if (history.length > 0) { currentIndex = history.pop(); render(); } }
         function openRecipe() { document.getElementById('recipeModal').classList.add('open'); document.getElementById('overlay').style.display = 'block'; }
+        
         function openList() {
             const listDiv = document.getElementById('all-dishes-list');
-            listDiv.innerHTML = dishes.map((d, i) => `<div onclick="goTo(${i})" style="border-bottom:1px solid #eee; padding:5px 0; color:#475569;">${i+1}. ${d.t}</div>`).join('');
+            listDiv.innerHTML = dishes.map((d, i) => `<div onclick="goTo(${i})" style="border-bottom:1px solid #eee; padding:5px 0; color:#475569; cursor:pointer;">${i+1}. ${d.t}</div>`).join('');
             document.getElementById('listModal').classList.add('open');
             document.getElementById('overlay').style.display = 'block';
         }
-        function goTo(i) { currentIndex = i; render(); closeModals(); }
+
+        function goTo(i) { currentIndex = i; render(); closeModals(); window.scrollTo(0,0); }
         function closeModals() { document.querySelectorAll('.modal, .list-modal').forEach(m => m.classList.remove('open')); document.getElementById('overlay').style.display = 'none'; }
+        
         window.onload = render;
     </script>
 </body>

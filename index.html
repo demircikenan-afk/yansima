@@ -2,115 +2,123 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yansıma Mutfak - 100 Lezzet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yansıma Mutfak</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --dark-green: #14532d; --pastel-green: #ecf3ee; --pastel-yellow: #fef9c3; --pastel-orange: #ffedd5; --white: #ffffff; --text-main: #1e293b; }
-        body { background: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; display: flex; justify-content: center; overflow: hidden; }
-        .app-container { width: 100%; max-width: 420px; height: 100vh; background: #fafaf9; border: 8px solid var(--dark-green); position: relative; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; }
-        .page { display: none; flex: 1; flex-direction: column; overflow-y: auto; padding: 0 20px 100px; }
-        .page.active { display: flex; }
-        .header { padding: 20px 20px 10px; display: flex; justify-content: space-between; align-items: center; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; margin: 0; color: var(--dark-green); }
-        .main-img { width: 100%; height: 220px; border-radius: 30px; object-fit: cover; margin-bottom: -40px; position: relative; z-index: 1; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .info-card { background: var(--white); border-radius: 30px; padding: 50px 20px 20px; position: relative; z-index: 0; }
-        .tag-row { display: flex; gap: 10px; margin-bottom: 8px; }
-        .pastel-tag { padding: 6px 12px; border-radius: 10px; font-size: 11px; font-weight: 700; color: var(--dark-green); }
-        .dish-title { font-size: 24px; font-family: 'Playfair Display', serif; color: var(--text-main); margin: 0; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; }
-        .stat-box { padding: 12px; border-radius: 18px; text-align: center; }
-        .stat-val { display: block; font-weight: 800; font-size: 14px; }
-        .side-menu-box { margin-top: 20px; padding: 15px; border-radius: 20px; background: #f8fafc; border-left: 4px solid var(--dark-green); }
-        .side-text { font-size: 13px; color: var(--text-main); font-weight: 500; line-height: 1.6; margin-top: 5px; }
-        .btn-recipe { background: var(--dark-green); color: white; border: none; width: 100%; padding: 16px; border-radius: 20px; font-weight: 700; margin-top: 15px; cursor: pointer; }
-        .btn-change { background: var(--pastel-orange); color: var(--dark-green); border: none; width: 100%; padding: 10px; border-radius: 15px; font-weight: 800; margin-top: 10px; cursor: pointer; border: 2px dashed var(--dark-green); font-size: 12px; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 20px; }
-        .cal-day { aspect-ratio: 1; background: var(--white); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--text-main); cursor: pointer; border: 1px solid #e2e8f0; }
-        .bottom-nav { position: absolute; bottom: 0; width: 100%; height: 80px; background: var(--white); display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #f1f5f9; z-index: 100; }
-        .nav-item { text-align: center; color: #94a3b8; font-size: 10px; font-weight: 700; cursor: pointer; flex: 1; }
+        :root { --dark-green: #14532d; --white: #ffffff; --text-main: #1e293b; }
+        body { background: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; display: flex; justify-content: center; height: 100vh; overflow: hidden; }
+        .app-container { width: 100%; max-width: 420px; height: 100%; background: #fafaf9; border: 6px solid var(--dark-green); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
+        
+        /* İçerik Alanı - Kaydırılabilir */
+        .content { flex: 1; overflow-y: auto; padding-bottom: 100px; -webkit-overflow-scrolling: touch; }
+        .page { display: none; padding: 15px; }
+        .page.active { display: block; }
+
+        .header { text-align: center; padding: 10px; border-bottom: 1px solid #ddd; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; color: var(--dark-green); letter-spacing: 2px; }
+        
+        .main-img { width: 90%; height: 180px; border-radius: 20px; object-fit: cover; margin: 15px auto; display: block; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .info-card { background: var(--white); border-radius: 25px; padding: 20px; margin: 0 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        .dish-title { font-size: 22px; font-family: 'Playfair Display', serif; color: var(--text-main); margin: 10px 0; }
+        .side-menu-box { background: #f1f5f9; padding: 12px; border-radius: 15px; margin: 10px 0; border-left: 4px solid var(--dark-green); font-size: 13px; }
+        
+        /* Butonlar */
+        .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn { border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; }
+        .btn-green { background: var(--dark-green); color: white; width: 100%; }
+        .btn-outline { background: #ffedd5; color: var(--dark-green); border: 1px solid var(--dark-green); }
+
+        /* Alt Menü Fix */
+        .bottom-nav { position: absolute; bottom: 0; width: 100%; height: 70px; background: white; display: flex; border-top: 2px solid var(--dark-green); z-index: 100; }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #94a3b8; }
         .nav-item.active { color: var(--dark-green); }
-        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 80%; background: white; border-top-left-radius: 40px; border-top-right-radius: 40px; box-shadow: 0 -15px 35px rgba(0,0,0,0.15); transition: 0.4s ease; z-index: 200; padding: 30px; box-sizing: border-box; }
+
+        /* Modal (Tarif) */
+        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 85%; background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; z-index: 200; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
         .modal.open { bottom: 0; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); display: none; z-index: 150; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: none; z-index: 150; }
     </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="closeModal()"></div>
 <div class="app-container">
-    <div class="header"><h1>YANSIMA</h1></div>
-    <div class="page active" id="page-home">
-        <img id="m-img" src="" class="main-img">
-        <div class="info-card">
-            <div class="tag-row"><span class="pastel-tag" style="background: var(--pastel-green);">Günün Menüsü</span><span class="pastel-tag" id="m-type" style="background: var(--pastel-orange);">Ziyafet</span></div>
-            <h2 class="dish-title" id="m-title">Menü Seçiliyor...</h2>
-            <div class="stats-grid">
-                <div class="stat-box" style="background: var(--pastel-green);"><span class="stat-val" id="m-time">--</span><span class="stat-label">Süre</span></div>
-                <div class="stat-box" style="background: var(--pastel-orange);"><span class="stat-val">10 Kişilik</span><span class="stat-label">Porsiyon</span></div>
+    <div class="header"><h1>ÜNAL LAMİNAT - YANSIMA</h1></div>
+    
+    <div class="content">
+        <div class="page active" id="page-home">
+            <img id="m-img" src="" class="main-img">
+            <div class="info-card">
+                <span style="font-size: 10px; font-weight: 800; color: var(--dark-green); text-transform: uppercase;">Günün Menüsü</span>
+                <h2 class="dish-title" id="m-title">Yükleniyor...</h2>
+                <div class="side-menu-box" id="m-sides"></div>
+                <button class="btn btn-green" onclick="openModal()">TARİFİ GÖR</button>
+                <div class="button-group">
+                    <button class="btn btn-outline" onclick="prevMenu()">⬅ Önceki</button>
+                    <button class="btn btn-outline" onclick="changeMenu()">Sonraki ➡</button>
+                </div>
             </div>
-            <div class="side-menu-box"><b style="font-size:10px; color:#94a3b8; text-transform:uppercase">Tamamlayıcı Menü</b><div class="side-text" id="m-sides"></div></div>
-            <button class="btn-recipe" onclick="openModal()">TARİF VE MALZEMELER</button>
-            <button class="btn-change" onclick="changeMenu()">🔄 BAŞKA BİR YEMEK ÖNER</button>
+        </div>
+        <div class="page" id="page-calendar">
+            <h2 style="color:var(--dark-green)">Şubat 2026</h2>
+            <div id="calendar-days" style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px;"></div>
         </div>
     </div>
-    <div class="page" id="page-calendar"><h2 style="font-family:'Playfair Display'; color:var(--dark-green)">Şubat 2026</h2><div class="calendar-grid" id="calendar-days"></div></div>
-    <div class="page" id="page-favorites"><h2 style="font-family:'Playfair Display'; color:var(--dark-green)">Favoriler</h2><p style="color: #64748b;">Çok yakında...</p></div>
-    <div class="modal" id="recipeModal"><div style="display:flex; justify-content:space-between; align-items:center"><h3 id="modal-title" style="margin:0; font-family:'Playfair Display'">Tarif</h3><span style="font-size:30px; cursor:pointer" onclick="closeModal()">×</span></div><div style="margin-top:20px; overflow-y:auto; height:85%"><b style="color:var(--dark-green)">Malzemeler:</b><p id="modal-ing" style="font-size:14px; color:#64748b; line-height:1.6;"></p><b style="color:var(--dark-green)">Pişirme Yöntemi:</b><p id="modal-steps" style="font-size:14px; color:#64748b; line-height:1.6;"></p></div></div>
+
+    <div class="modal" id="recipeModal">
+        <div style="display:flex; justify-content:space-between;"><h3 id="modal-title">Tarif</h3><span onclick="closeModal()" style="font-size:30px;">×</span></div>
+        <p><strong>Malzemeler:</strong><br><span id="modal-ing"></span></p>
+        <p><strong>Pişirme:</strong><br><span id="modal-steps"></span></p>
+    </div>
+
     <div class="bottom-nav">
-        <div class="nav-item active" onclick="showPage('home', event)">🏠<br>ANASAYFA</div>
-        <div class="nav-item" onclick="showPage('calendar', event)">📅<br>TAKVİM</div>
-        <div class="nav-item" onclick="showPage('favorites', event)">❤<br>FAVORİLER</div>
+        <div class="nav-item active" onclick="showPage('home')">🏠<br>ANASAYFA</div>
+        <div class="nav-item" onclick="showPage('calendar')">📅<br>TAKVİM</div>
     </div>
 </div>
 
 <script>
     const allMenus = [
-        { title: "Kuru Fasulye", time: "180 dk", type: "Tencere", sides: "• Şehriyeli Pirinç Pilavı<br>• Karışık Turşu<br>• Buz Gibi Cacık", ing: "2 kg kuru fasulye, 1.5 kg kuşbaşı et, 5 soğan, 8 domates, salça, sıvı yağ.", steps: "Etleri ve soğanları kavurun. Salça ekleyip fasulyeleri koyun. Kısık ateşte pişirin.", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800" },
-        { title: "Etli Nohut", time: "150 dk", type: "Geleneksel", sides: "• Sade Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Ayran", ing: "2 kg nohut, 2 kg kuşbaşı et, 6 soğan, salça, baharat.", steps: "Eti kavurup nohutları ekleyin. Yumuşayana kadar pişirin.", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800" },
-        { title: "Zeytinyağlı Enginar", time: "50 dk", type: "Hafif", sides: "• Dereotlu Fava<br>• Yeşil Salata<br>• Çilekli Limonata", ing: "25 enginar, havuç, bezelye, patates, zeytinyağı, limon.", steps: "Sebzeleri zeytinyağında pişirip enginarların üzerine dizin.", img: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" },
-        { title: "İskender Kebap", time: "45 dk", type: "Ziyafet", sides: "• Süzme Yoğurt<br>• Köz Patlıcan<br>• Şıra", ing: "3.5 kg döner eti, pide, 700g tereyağı, domates sosu.", steps: "Pideleri dizin, üzerine döner ve sıcak sosu dökün. Tereyağı gezdirin.", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800" },
-        { title: "Tavuk Şiş", time: "40 dk", type: "Izgara", sides: "• Lavaş Ekmeği<br>• Sumaklı Soğan Salatası<br>• Şalgam Suyu", ing: "6 kg tavuk, soğan, biber, yoğurt marinasyonu.", steps: "Marine tavukları şişe dizip fırında veya ızgarada pişirin.", img: "https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?w=800" },
-        { title: "Karnıyarık", time: "60 dk", type: "Fırın", sides: "• Tereyağlı Pirinç Pilavı<br>• Cacık<br>• Mevsim Salatası", ing: "25 patlıcan, 2 kg kıyma, soğan, domates, biber.", steps: "Patlıcanları kızartıp içini kıymalı harçla doldurun, fırınlayın.", img: "https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?w=800" },
-        { title: "Biber Dolması", time: "50 dk", type: "Tencere", sides: "• Sarımsaklı Yoğurt<br>• Dilim Karpuz<br>• Acılı Ezme", ing: "50 biber, 1.5 kg kıyma, pirinç, dereotu, nane.", steps: "Harcı hazırlayıp biberleri doldurun, kısık ateşte pişirin.", img: "https://images.unsplash.com/photo-1623910543621-3d6f7344588e?w=800" },
-        { title: "Hünkar Beğendi", time: "90 dk", type: "Saray Usulü", sides: "• Gavurdağı Salatası<br>• Közlenmiş Biber<br>• Ayran", ing: "3 kg kuzu eti, 12 patlıcan, kaşar, süt, tereyağı.", steps: "Köz patlıcanı beşamel ile ezin, üzerine sote eti ekleyin.", img: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" },
-        { title: "Mücver", time: "30 dk", type: "Sebze", sides: "• Domatesli Makarna<br>• Beyaz Peynir<br>• Nane Çayı", ing: "10 kabak, 6 yumurta, un, peynir, dereotu.", steps: "Rendelenmiş kabakları harç yapıp tavada kızartın.", img: "https://images.unsplash.com/photo-1619641211829-4034440a3372?w=800" },
-        { title: "Tavuk Sote", time: "30 dk", type: "Hızlı", sides: "• Sebzeli Bulgur Pilavı<br>• Ayran<br>• Marul Salatası", ing: "5 kg tavuk, mantar, biber, domates, salça.", steps: "Tavuk ve sebzeleri yüksek ateşte soteleyin.", img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" },
-        { title: "Zeytinyağlı Barbunya", time: "50 dk", type: "Zeytinyağlı", sides: "• Mısır Ekmeği<br>• Çoban Salata<br>• Limonata", ing: "2.5 kg barbunya, soğan, havuç, zeytinyağı.", steps: "Barbunyaları haşlayıp sebzeli zeytinyağı sosunda pişirin.", img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800" },
-        { title: "Fırın Tavuk", time: "70 dk", type: "Fırın", sides: "• Elma Dilim Patates<br>• Mevsim Salatası<br>• Meyve Suyu", ing: "6 kg tavuk, patates, zeytinyağı, biberiye.", steps: "Tavukları baharatlayıp patateslerle fırında kızartın.", img: "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=800" },
-        { title: "Kayseri Mantısı", time: "60 dk", type: "Yöresel", sides: "• Domates Sosu<br>• Sarımsaklı Yoğurt<br>• Kuru Nane-Sumak", ing: "2 kg un, 1 kg kıyma, soğan, baharat.", steps: "Küçük hamurları kapatıp haşlayın, sosla servis edin.", img: "https://images.unsplash.com/photo-1616662916445-12846f5e9273?w=800" },
-        { title: "Kuzu Tandır", time: "180 dk", type: "Ziyafet", sides: "• İç Pilav<br>• Közlenmiş Biber<br>• Şalgam", ing: "5 kg kuzu eti, tane karabiber, defne yaprağı.", steps: "Etleri fırın poşetinde veya tandırda çok kısık ateşte pişirin.", img: "https://images.unsplash.com/photo-1544124499-58912cbddaad?w=800" },
-        { title: "Zeytinyağlı Pırasa", time: "40 dk", type: "Hafif", sides: "• Peynirli Börek<br>• Yoğurt<br>• Mevsim Meyvesi", ing: "5 kg pırasa, havuç, pirinç, zeytinyağı, limon.", steps: "Pırasa ve havuçları zeytinyağında pirinçle pişirin.", img: "https://images.unsplash.com/photo-1620706859521-827c19985092?w=800" }
-        // Liste 100'e kadar bu mantıkla devam ediyor...
+        { title: "Kuru Fasulye", sides: "• Pirinç Pilavı<br>• Turşu<br>• Cacık", ing: "2kg Fasulye, 1.5kg Et, Soğan, Salça", steps: "Fasulyeleri haşlayın, etle kavurup pişirin.", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500" },
+        { title: "Etli Nohut", sides: "• Bulgur Pilavı<br>• Gavurdağı Salata<br>• Ayran", ing: "2kg Nohut, 1.5kg Et, Soğan, Kimyon", steps: "Nohutu haşlayıp etle 2 saat pişirin.", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500" },
+        { title: "Zeytinyağlı Enginar", sides: "• Dereotlu Fava<br>• Mevsim Salata<br>• Limonata", ing: "25 Enginar, Havuç, Bezelye, Zeytinyağı", steps: "Sebzeleri harç yapıp enginarlarda pişirin.", img: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=500" },
+        { title: "İskender Kebap", sides: "• Süzme Yoğurt<br>• Köz Biber<br>• Şıra", ing: "Döner eti, Pide, Tereyağı, Sos", steps: "Pideleri dizin, eti ve sosu ekleyip yağ gezdirin.", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500" },
+        { title: "Karnıyarık", sides: "• Şehriyeli Pilav<br>• Cacık<br>• Turşu", ing: "Patlıcan, Kıyma, Domates, Biber", steps: "Patlıcanları kızartıp kıymayla fırınlayın.", img: "https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?w=500" }
+        // ... Buraya diğer yemekler eklenecek
     ];
 
-    // Listenin geri kalan 85 yemeğini de buraya benzer formatta ekledim (Kod kısalığı için özetlendi)
-    // Yunus, geri kalan yemekleri de arka plana rastgele algoritmasına bağladım.
-
     let currentIdx = 0;
+    let history = [];
 
     function updateUI() {
-        const m = allMenus[currentIdx] || allMenus[0];
+        const m = allMenus[currentIdx];
         document.getElementById('m-title').innerText = m.title;
-        document.getElementById('m-time').innerText = m.time;
-        document.getElementById('m-type').innerText = m.type;
         document.getElementById('m-sides').innerHTML = m.sides;
         document.getElementById('m-img').src = m.img;
     }
 
     function changeMenu() {
+        history.push(currentIdx);
         currentIdx = Math.floor(Math.random() * allMenus.length);
         updateUI();
     }
 
-    function showPage(pageId, e) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById('page-' + pageId).classList.add('active');
+    function prevMenu() {
+        if(history.length > 0) {
+            currentIdx = history.pop();
+            updateUI();
+        }
+    }
+
+    function showPage(p) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        document.getElementById('page-' + p).classList.add('active');
         document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-        if(e) e.currentTarget.classList.add('active');
     }
 
     function openModal() {
-        const m = allMenus[currentIdx] || allMenus[0];
+        const m = allMenus[currentIdx];
         document.getElementById('modal-title').innerText = m.title;
         document.getElementById('modal-ing').innerText = m.ing;
         document.getElementById('modal-steps').innerText = m.steps;
@@ -123,14 +131,15 @@
         document.getElementById('overlay').style.display = 'none';
     }
 
-    // İlk açılış
+    // Başlat
     updateUI();
-    const cal = document.getElementById('calendar-days');
-    for(let i=1; i<=28; i++) {
-        const d = document.createElement('div');
-        d.className = 'cal-day'; d.innerText = i;
+    // Takvim günlerini oluştur
+    for(let i=1; i<=28; i++){
+        let d = document.createElement('div');
+        d.style.padding="10px"; d.style.background="white"; d.style.textAlign="center"; d.style.borderRadius="5px";
+        d.innerText = i;
         d.onclick = () => { changeMenu(); showPage('home'); };
-        cal.appendChild(d);
+        document.getElementById('calendar-days').appendChild(d);
     }
 </script>
 </body>

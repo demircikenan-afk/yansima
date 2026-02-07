@@ -4,124 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Yansıma Mutfak</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --dark-green: #14532d; --white: #ffffff; --text-main: #1e293b; }
+        :root { --dark-green: #14532d; --pastel-green: #ecf3ee; --pastel-orange: #ffedd5; --white: #ffffff; }
         body { background: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; display: flex; justify-content: center; height: 100vh; overflow: hidden; }
         .app-container { width: 100%; max-width: 420px; height: 100%; background: #fafaf9; border: 6px solid var(--dark-green); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
         
-        /* İçerik Alanı - Kaydırılabilir */
-        .content { flex: 1; overflow-y: auto; padding-bottom: 100px; -webkit-overflow-scrolling: touch; }
-        .page { display: none; padding: 15px; }
-        .page.active { display: block; }
+        .content { flex: 1; overflow-y: auto; padding-bottom: 90px; }
+        .header { text-align: center; padding: 15px; background: var(--white); border-bottom: 1px solid #eee; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 24px; margin: 0; color: var(--dark-green); letter-spacing: 1px; }
+        
+        .main-img { width: 92%; height: 210px; border-radius: 25px; object-fit: cover; margin: 15px auto; display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        
+        .info-card { background: var(--white); border-radius: 30px; padding: 20px; margin: 0 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .dish-title { font-size: 24px; font-family: 'Playfair Display', serif; color: #1e293b; margin: 5px 0 15px 0; }
 
-        .header { text-align: center; padding: 10px; border-bottom: 1px solid #ddd; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; color: var(--dark-green); letter-spacing: 2px; }
-        
-        .main-img { width: 90%; height: 180px; border-radius: 20px; object-fit: cover; margin: 15px auto; display: block; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
-        .info-card { background: var(--white); border-radius: 25px; padding: 20px; margin: 0 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        
-        .dish-title { font-size: 22px; font-family: 'Playfair Display', serif; color: var(--text-main); margin: 10px 0; }
-        .side-menu-box { background: #f1f5f9; padding: 12px; border-radius: 15px; margin: 10px 0; border-left: 4px solid var(--dark-green); font-size: 13px; }
-        
-        /* Butonlar */
-        .button-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .btn { border: none; padding: 12px; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; }
-        .btn-green { background: var(--dark-green); color: white; width: 100%; }
-        .btn-outline { background: #ffedd5; color: var(--dark-green); border: 1px solid var(--dark-green); }
+        /* İstediğin 10 Kişilik Paneli */
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .stat-box { padding: 12px; border-radius: 18px; text-align: center; }
+        .stat-val { display: block; font-weight: 800; font-size: 15px; color: var(--dark-green); }
+        .stat-label { font-size: 11px; color: #64748b; font-weight: 600; }
 
-        /* Alt Menü Fix */
-        .bottom-nav { position: absolute; bottom: 0; width: 100%; height: 70px; background: white; display: flex; border-top: 2px solid var(--dark-green); z-index: 100; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: #94a3b8; }
+        .side-menu-box { background: #f8fafc; padding: 15px; border-radius: 20px; margin-bottom: 20px; border-left: 5px solid var(--dark-green); }
+        
+        /* Yan Yana Butonlar */
+        .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .btn { border: none; padding: 14px; border-radius: 15px; font-weight: 800; cursor: pointer; font-size: 12px; transition: 0.2s; }
+        .btn-green { background: var(--dark-green); color: white; grid-column: span 2; margin-bottom: 5px; }
+        .btn-outline { background: var(--pastel-orange); color: var(--dark-green); border: 1px solid var(--dark-green); }
+
+        .nav-bar { position: absolute; bottom: 0; width: 100%; height: 75px; background: white; display: flex; border-top: 3px solid var(--dark-green); }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #94a3b8; }
         .nav-item.active { color: var(--dark-green); }
 
-        /* Modal (Tarif) */
-        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 85%; background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; z-index: 200; transition: 0.4s; padding: 25px; box-sizing: border-box; overflow-y: auto; }
+        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 85%; background: white; border-top-left-radius: 35px; border-top-right-radius: 35px; z-index: 200; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); padding: 30px; box-sizing: border-box; overflow-y: auto; }
         .modal.open { bottom: 0; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: none; z-index: 150; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 150; }
     </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="closeModal()"></div>
 <div class="app-container">
-    <div class="header"><h1>ÜNAL LAMİNAT - YANSIMA</h1></div>
+    <div class="header"><h1>YANSIMA</h1></div>
     
     <div class="content">
-        <div class="page active" id="page-home">
-            <img id="m-img" src="" class="main-img">
-            <div class="info-card">
-                <span style="font-size: 10px; font-weight: 800; color: var(--dark-green); text-transform: uppercase;">Günün Menüsü</span>
-                <h2 class="dish-title" id="m-title">Yükleniyor...</h2>
-                <div class="side-menu-box" id="m-sides"></div>
-                <button class="btn btn-green" onclick="openModal()">TARİFİ GÖR</button>
-                <div class="button-group">
-                    <button class="btn btn-outline" onclick="prevMenu()">⬅ Önceki</button>
-                    <button class="btn btn-outline" onclick="changeMenu()">Sonraki ➡</button>
+        <img id="m-img" src="" class="main-img">
+        <div class="info-card">
+            <span style="font-size: 11px; font-weight: 800; color: var(--dark-green); letter-spacing: 1px;">GÜNÜN ÖNERİSİ</span>
+            <h2 class="dish-title" id="m-title">Yükleniyor...</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-box" style="background: var(--pastel-green);">
+                    <span class="stat-val">45-60 Dakika</span>
+                    <span class="stat-label">Pişirme Süresi</span>
+                </div>
+                <div class="stat-box" style="background: var(--pastel-orange);">
+                    <span class="stat-val">10 Kişilik</span>
+                    <span class="stat-label">Porsiyon Ölçüsü</span>
                 </div>
             </div>
-        </div>
-        <div class="page" id="page-calendar">
-            <h2 style="color:var(--dark-green)">Şubat 2026</h2>
-            <div id="calendar-days" style="display:grid; grid-template-columns:repeat(7,1fr); gap:5px;"></div>
+
+            <div class="side-menu-box">
+                <small style="color:#94a3b8; font-weight:800;">TAMAMLAYICI MENÜ</small>
+                <div id="m-sides" style="margin-top:5px; font-size:14px; font-weight:500; line-height:1.5;"></div>
+            </div>
+
+            <button class="btn btn-green" onclick="openModal()">TARİFİ VE MALZEMELERİ GÖR</button>
+            
+            <div class="button-row">
+                <button class="btn btn-outline" onclick="prevMenu()">⬅ ÖNCEKİ</button>
+                <button class="btn btn-outline" onclick="nextMenu()">SONRAKİ ➡</button>
+            </div>
         </div>
     </div>
 
     <div class="modal" id="recipeModal">
-        <div style="display:flex; justify-content:space-between;"><h3 id="modal-title">Tarif</h3><span onclick="closeModal()" style="font-size:30px;">×</span></div>
-        <p><strong>Malzemeler:</strong><br><span id="modal-ing"></span></p>
-        <p><strong>Pişirme:</strong><br><span id="modal-steps"></span></p>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2 id="mod-title" style="margin:0; font-family:'Playfair Display'; color:var(--dark-green);">Tarif</h2>
+            <span onclick="closeModal()" style="font-size:35px; cursor:pointer;">&times;</span>
+        </div>
+        <p><strong>🛒 Malzemeler (10 Kişilik):</strong><br><span id="mod-ing" style="color:#475569; line-height:1.6;"></span></p>
+        <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
+        <p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="mod-steps" style="color:#475569; line-height:1.6;"></span></p>
     </div>
 
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="showPage('home')">🏠<br>ANASAYFA</div>
-        <div class="nav-item" onclick="showPage('calendar')">📅<br>TAKVİM</div>
+    <div class="nav-bar">
+        <div class="nav-item active">🏠<br>ANASAYFA</div>
+        <div class="nav-item" onclick="alert('Takvim Modülü Hazırlanıyor!')">📅<br>TAKVİM</div>
     </div>
 </div>
 
 <script>
     const allMenus = [
-        { title: "Kuru Fasulye", sides: "• Pirinç Pilavı<br>• Turşu<br>• Cacık", ing: "2kg Fasulye, 1.5kg Et, Soğan, Salça", steps: "Fasulyeleri haşlayın, etle kavurup pişirin.", img: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500" },
-        { title: "Etli Nohut", sides: "• Bulgur Pilavı<br>• Gavurdağı Salata<br>• Ayran", ing: "2kg Nohut, 1.5kg Et, Soğan, Kimyon", steps: "Nohutu haşlayıp etle 2 saat pişirin.", img: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500" },
-        { title: "Zeytinyağlı Enginar", sides: "• Dereotlu Fava<br>• Mevsim Salata<br>• Limonata", ing: "25 Enginar, Havuç, Bezelye, Zeytinyağı", steps: "Sebzeleri harç yapıp enginarlarda pişirin.", img: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=500" },
-        { title: "İskender Kebap", sides: "• Süzme Yoğurt<br>• Köz Biber<br>• Şıra", ing: "Döner eti, Pide, Tereyağı, Sos", steps: "Pideleri dizin, eti ve sosu ekleyip yağ gezdirin.", img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500" },
-        { title: "Karnıyarık", sides: "• Şehriyeli Pilav<br>• Cacık<br>• Turşu", ing: "Patlıcan, Kıyma, Domates, Biber", steps: "Patlıcanları kızartıp kıymayla fırınlayın.", img: "https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?w=500" }
-        // ... Buraya diğer yemekler eklenecek
+        { t: "Kuru Fasulye", s: "• Pirinç Pilavı<br>• Karışık Turşu<br>• Buz Gibi Cacık", i: "2 kg kuru fasulye (ıslatılmış), 1 kg kuşbaşı et, 5 soğan, 4 kaşık salça, sıvı yağ, tuz, pul biber.", p: "Eti ve yemeklik doğranmış soğanları kavurun. Salçayı ekleyip kokusu çıkana kadar çevirin. Fasulyeleri ekleyip üzerini geçecek kadar su koyun. Kısık ateşte lokum gibi olana kadar pişirin.", g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600" },
+        { t: "Etli Nohut", s: "• Şehriyeli Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Taze Ayran", i: "2 kg nohut (akşamdan ıslatılmış), 1.5 kg kuşbaşı kuzu eti, 6 soğan, salça, kimyon, karabiber.", p: "Eti suyunu çekene kadar kavurun. Soğan ve salçayla buluşturun. Nohutları ekleyip sıcak su ilavesiyle yumuşayana kadar pişirin.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" },
+        { t: "Zeytinyağlı Enginar", s: "• Dereotlu Fava<br>• Çoban Salatası<br>• Üzüm Hoşafı", i: "25 adet enginar, 6 havuç, 6 patates, 2 su bardağı bezelye, zeytinyağı, limon, şeker, tuz.", p: "Enginarları limonlu suda bekletin. Küp doğranmış sebzeleri zeytinyağında hafifçe soteleyin. Enginarların üzerine doldurup az suyla pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=600" },
+        { t: "İskender Kebap", s: "• Süzme Yoğurt<br>• Közlenmiş Domates & Biber<br>• Şıra", i: "3.5 kg döner eti, 15 adet tırnak pide, 700 gr tereyağı, domates salçası, yoğurt.", p: "Pideleri küp doğrayıp ısıtın. Üzerine kızartılmış dönerleri dizin. Hazırladığınız sıcak domates sosunu gezdirin ve en son kızgın tereyağını dökün.", g: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600" },
+        { t: "Hünkar Beğendi", s: "• Gavurdağı Salatası<br>• Mevsim Meyveleri<br>• Ayran", i: "3 kg kuzu kuşbaşı, 12 adet büyük patlıcan, 1.5 litre süt, 300 gr kaşar, un, tereyağı.", p: "Etleri kendi suyunda yumuşayana kadar pişirin. Patlıcanları közleyip ezin. Beşamel sos hazırlayıp patlıcan ve kaşarla karıştırın. Beğendi üzerine etleri koyarak servis edin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600" }
     ];
 
-    let currentIdx = 0;
-    let history = [];
+    let current = 0;
+    let historyStack = [];
 
-    function updateUI() {
-        const m = allMenus[currentIdx];
-        document.getElementById('m-title').innerText = m.title;
-        document.getElementById('m-sides').innerHTML = m.sides;
-        document.getElementById('m-img').src = m.img;
+    function update() {
+        const m = allMenus[current];
+        document.getElementById('m-title').innerText = m.t;
+        document.getElementById('m-sides').innerHTML = m.s;
+        document.getElementById('m-img').src = m.g;
     }
 
-    function changeMenu() {
-        history.push(currentIdx);
-        currentIdx = Math.floor(Math.random() * allMenus.length);
-        updateUI();
+    function nextMenu() {
+        historyStack.push(current);
+        current = Math.floor(Math.random() * allMenus.length);
+        update();
     }
 
     function prevMenu() {
-        if(history.length > 0) {
-            currentIdx = history.pop();
-            updateUI();
+        if(historyStack.length > 0) {
+            current = historyStack.pop();
+            update();
         }
     }
 
-    function showPage(p) {
-        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-        document.getElementById('page-' + p).classList.add('active');
-        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    }
-
     function openModal() {
-        const m = allMenus[currentIdx];
-        document.getElementById('modal-title').innerText = m.title;
-        document.getElementById('modal-ing').innerText = m.ing;
-        document.getElementById('modal-steps').innerText = m.steps;
+        const m = allMenus[current];
+        document.getElementById('mod-title').innerText = m.t;
+        document.getElementById('mod-ing').innerText = m.i;
+        document.getElementById('mod-steps').innerText = m.p;
         document.getElementById('recipeModal').classList.add('open');
         document.getElementById('overlay').style.display = 'block';
     }
@@ -132,15 +141,7 @@
     }
 
     // Başlat
-    updateUI();
-    // Takvim günlerini oluştur
-    for(let i=1; i<=28; i++){
-        let d = document.createElement('div');
-        d.style.padding="10px"; d.style.background="white"; d.style.textAlign="center"; d.style.borderRadius="5px";
-        d.innerText = i;
-        d.onclick = () => { changeMenu(); showPage('home'); };
-        document.getElementById('calendar-days').appendChild(d);
-    }
+    update();
 </script>
 </body>
 </html>

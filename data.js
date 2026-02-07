@@ -1,74 +1,49 @@
-// data.js
-const allMenus = [
-    { 
-        t: "Kuru Fasulye", 
-        s: "• Pirinç Pilavı<br>• Karışık Turşu<br>• Buz Gibi Cacık", 
-        i: "2 kg kuru fasulye (ıslatılmış), 1–1.5 kg kuşbaşı et, 5 büyük soğan, 6–8 domates, 4 yk domates salçası, 2 yk biber salçası, 1.5 su bardağı sıvı yağ.", 
-        p: "Soğanı ve eti kavurun, salçaları ekleyin. Fasulyeleri ekleyip sıcak suyla 2–3 saat (düdüklüde 45-60 dk) pişirin.", 
-        g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800" 
-    },
-    { 
-        t: "Etli Nohut", 
-        s: "• Şehriyeli Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Ayran", 
-        i: "2 kg nohut (ıslatılmış), 1.5–2 kg kuşbaşı et, 6 büyük soğan, 8 domates, 5 yk salça, 1 su bardağı sıvı yağ, kimyon.", 
-        p: "Eti mühürleyin, soğan ve salçayı kavurun. Nohutları ekleyip 2–2.5 saat pişirin.", 
-        g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800" 
-    },
-    { 
-        t: "Zeytinyağlı Enginar", 
-        s: "• Dereotlu Fava<br>• Yeşil Mevsim Salatası<br>• Portakal Suyu", 
-        i: "25 enginar, 6 havuç, 6 patates, 1.5 sb bezelye, 1.5 sb zeytinyağı, limon suyu, dereotu.", 
-        p: "Sebzeleri soteleyin, enginarların içine doldurun. Limonlu suda 40–50 dk pişirin. Soğuk servis edin.", 
-        g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" 
-    },
-    { 
-        t: "İskender Kebap", 
-        s: "• Süzme Yoğurt<br>• Közlenmiş Biber ve Domates<br>• Şıra", 
-        i: "3.5 kg döner eti, 20 adet tırnak pide, 2 kg yoğurt, 700 gr tereyağı, 10 domates (sos için).", 
-        p: "Pideleri ısıtıp doğrayın. Üzerine kızarmış döneri koyun. Domates sosu ve kızgın tereyağı gezdirin.", 
-        g: "https://images.unsplash.com/photo-1633321702518-7feccafacdc1?w=800" 
-    },
-    { 
-        t: "Tavuk Şiş", 
-        s: "• Lavaş Ekmeği<br>• Sumaklı Soğan Salatası<br>• Közlenmiş Patlıcan", 
-        i: "6 kg tavuk göğsü, 8 soğan, 8 biber, 1 sb zeytinyağı, yoğurt, kekik, pul biber.", 
-        p: "Tavukları marine edin (4-6 saat). Sebzelerle şişe dizip ızgarada veya 200 derece fırında 30 dk pişirin.", 
-        g: "https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?w=800" 
-    },
-    { 
-        t: "Karnıyarık", 
-        s: "• Şehriyeli Pirinç Pilavı<br>• Cacık<br>• Çoban Salata", 
-        i: "25 adet patlıcan, 2 kg kıyma, 8 soğan, 8 domates, salça, maydanoz.", 
-        p: "Patlıcanları kızartın. Kıymalı harcı hazırlayıp içine doldurun. Fırında 30-40 dk pişirin.", 
-        g: "https://images.unsplash.com/photo-1590577976322-3d234ff38235?w=800" 
-    },
-    { 
-        t: "Biber Dolması", 
-        s: "• Sarımsaklı Yoğurt<br>• Domatesli Makarna<br>• Mevsim Salatası", 
-        i: "50 adet dolmalık biber, 1.5 kg pirinç, 1.5 kg kıyma, 8 soğan, nane, dereotu.", 
-        p: "İç harcı hazırlayıp biberleri doldurun. Tencereye dizip kısık ateşte 50 dk pişirin.", 
-        g: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?w=800" 
-    },
-    { 
-        t: "Hünkar Beğendi", 
-        s: "• Domates Çorbası<br>• Gavurdağı Salatası<br>• Revani", 
-        i: "3 kg kuzu eti, 12 patlıcan, 1.5 lt süt, 300 gr kaşar peyniri, tereyağı, un.", 
-        p: "Eti kavurup pişirin. Patlıcanları közleyip beşamel sos ve kaşarla püre yapın. Üzerine eti koyun.", 
-        g: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" 
-    },
-    { 
-        t: "Zeytinyağlı Barbunya", 
-        s: "• Mısır Ekmeği<br>• Turp Salatası<br>• Üzüm Hoşafı", 
-        i: "2.5 kg barbunya, 6 soğan, 6 domates, zeytinyağı, şeker, tuz.", 
-        p: "Barbunyaları haşlayın. Soğan ve salçayı kavurup barbunyalarla birleştirin. 45 dk pişirin.", 
-        g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" 
-    },
-    { 
-        t: "Kayseri Mantısı", 
-        s: "• Soslu Patlıcan Kızartma<br>• İnce Kıyım Salata<br>• Ev Yapımı Limonata", 
-        i: "2 kg un, 1 kg kıyma, 500 gr yoğurt, tereyağı, sarımsak, sumak.", 
-        p: "Hamuru açıp çok küçük kareler kesin. Kıymalı harcı koyup kapatın. Haşlayıp yoğurt ve sosla servis edin.", 
-        g: "https://images.unsplash.com/photo-1563805042-7684c849a135?w=800" 
-    }
-    // ... Devamı senin listene göre 167'ye kadar gidebilir
+// data.js - YANSIMA MUTFAK TAM LİSTE (İLK 46 YEMEK)
+const dishes = [
+    { t: "Kuru Fasulye", s: "• Pirinç Pilavı<br>• Turşu<br>• Cacık", i: "2 kg kuru fasulye, 1.5 kg kuşbaşı et, 5 soğan, 6 domates, 4 yk salça, 1.5 sb sıvı yağ.", p: "Fasulyeleri süzün. Eti kavurun, soğan ve salçayı ekleyin. Fasulyeyi koyup 2-3 saat pişirin.", g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800" },
+    { t: "Etli Nohut", s: "• Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Ayran", i: "2 kg nohut, 2 kg et, 6 soğan, 6 domates, 5 yk salça, 1 sb yağ.", p: "Eti kavurun, soğan, salça ve domatesi ekleyin. Nohutları ekleyip 2-2.5 saat pişirin.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800" },
+    { t: "Zeytinyağlı Enginar", s: "• Dereotlu Fava<br>• Yeşil Salata", i: "25 enginar, 5 limon suyu, 6 soğan, 6 havuç, 6 patates, 1.5 sb bezelye, 1.5 sb zeytinyağı.", p: "Soğanı kavurun, sebzeleri ekleyin. Enginarları dizip suyunu ve yağını koyun, yumuşayana kadar pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" },
+    { t: "İskender Kebap", s: "• Yoğurt<br>• Közlenmiş Biber<br>• Şıra", i: "3.5 kg döner eti, 20 tırnak pide, 2 kg yoğurt, 700 gr tereyağı, 10 domates sosu.", p: "Pideleri doğrayın, üzerine döneri koyun. Sos ve kızgın tereyağı ile servis yapın.", g: "https://images.unsplash.com/photo-1633321702518-7feccafacdc1?w=800" },
+    { t: "Tavuk Şiş", s: "• Lavaş<br>• Sumaklı Soğan<br>• Köz Patlıcan", i: "6 kg tavuk göğsü, 8 soğan, 8 biber, 1 sb zeytinyağı, yoğurt, kekik.", p: "Tavukları marine edin, şişe dizin. Izgarada veya fırında pişirin.", g: "https://images.unsplash.com/photo-1532636875304-0c89119d9b4d?w=800" },
+    { t: "Karnıyarık", s: "• Pirinç Pilavı<br>• Cacık", i: "25 patlıcan, 2 kg kıyma, 8 soğan, 8 domates, salça.", p: "Patlıcanları kızartın. Kıymalı harcı hazırlayıp doldurun ve fırınlayın.", g: "https://images.unsplash.com/photo-1590577976322-3d234ff38235?w=800" },
+    { t: "Biber Dolması", s: "• Sarımsaklı Yoğurt<br>• Çoban Salata", i: "50 biber, 1.5 kg pirinç, 1.5 kg kıyma, 8 soğan, nane, dereotu.", p: "İç harcı hazırlayıp biberleri doldurun. Kısık ateşte pişirin.", g: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?w=800" },
+    { t: "İzmir Köfte", s: "• Mevsim Salatası<br>• Piyaz", i: "2.5 kg kıyma, 3 kg patates, 5 soğan, salça, biber, domates.", p: "Köfte ve patatesleri kızartıp tepsiye dizin. Salçalı suyla fırınlayın.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+    { t: "Tas Kebabı", s: "• Patates Püresi<br>• Pilav", i: "3 kg et, 5 soğan, 4 diş sarımsak, salça, domates.", p: "Etleri mühürleyip soğanla kavurun. Su ekleyip yumuşayana kadar pişirin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" },
+    { t: "Hünkar Beğendi", s: "• Mercimek Çorbası<br>• Ayran", i: "3 kg et, 15 patlıcan, 1.5 lt süt, un, kaşar peyniri.", p: "Eti soteleyin. Köz patlıcanla beşamel sosu karıştırıp üzerine eti koyun.", g: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" },
+    { t: "Mantı", s: "• Patlıcan Kızartma<br>• Salata", i: "2 kg un, 1 kg kıyma, yoğurt, sarımsak, tereyağı.", p: "Hamuru açıp kapatın. Haşlayıp yoğurt ve sosla servis edin.", g: "https://images.unsplash.com/photo-1563805042-7684c849a135?w=800" },
+    { t: "Lahmacun", s: "• Bol Yeşillik<br>• Ayran", i: "3 kg un, 2 kg yağlı kıyma, 1 kg soğan, domates, maydanoz.", p: "Harcı hamura yayın. Fırında yüksek ısıda pişirin.", g: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800" },
+    { t: "Zeytinyağlı Barbunya", s: "• Mısır Ekmeği<br>• Turp Salatası", i: "2.5 kg barbunya, 6 soğan, 6 havuç, zeytinyağı.", p: "Barbunyaları haşlayıp sebzelerle pişirin. Soğuk servis edin.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+    { t: "Taze Fasulye", s: "• Makarna<br>• Yoğurt", i: "5 kg fasulye, 6 soğan, 8 domates, zeytinyağı.", p: "Fasulyeleri soğan ve domatesle pişirin.", g: "https://images.unsplash.com/photo-1515471204-ad93e284e850?w=800" },
+    { t: "Fırın Mücver", s: "• Domates Çorbası<br>• Peynir", i: "10 kabak, 8 yumurta, 3 sb un, peynir, dereotu.", p: "Karışımı tepsiye döküp 200 derecede pişirin.", g: "https://images.unsplash.com/photo-1604467732921-0c5a29f86ca6?w=800" },
+    { t: "Patlıcan Musakka", s: "• Pirinç Pilavı<br>• Cacık", i: "3 kg patlıcan, 1.5 kg kıyma, soğan, salça, domates.", p: "Patlıcanları kızartın. Kıymalı sosla birleştirip fırınlayın.", g: "https://images.unsplash.com/photo-1563333333-3d234ff38235?w=800" },
+    { t: "Orman Kebabı", s: "• Şehriyeli Pilav<br>• Turşu", i: "3 kg kuşbaşı et, 1 kg patates, 500 gr bezelye, 5 havuç.", p: "Et ve sebzeleri soteleyip fırın poşetinde veya tencerede pişirin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" },
+    { t: "Kadınbudu Köfte", s: "• Patates Püresi<br>• Piyaz", i: "2.5 kg kıyma, 2 sb pirinç, 6 yumurta, un.", p: "Pirinci haşlayın, kıymayla yoğurup önce una sonra yumurtaya bulayıp kızartın.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+    { t: "Zeytinyağlı Yaprak Sarma", s: "• Yoğurt<br>• Limon Dilimleri", i: "1 kg asma yaprağı, 1.5 kg pirinç, bol soğan, zeytinyağı, kuş üzümü.", p: "İç harcı hazırlayıp sarmaları sarın. Limonla pişirin.", g: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?w=800" },
+    { t: "Tavuk Sote", s: "• Bulgur Pilavı<br>• Mevsim Salata", i: "5 kg tavuk göğsü, 1 kg mantar, 6 biber, 4 domates.", p: "Tavukları sebzelerle soteleyip pişirin.", g: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" },
+    { t: "Etli Bamya", s: "• Pirinç Pilavı<br>• Turşu", i: "3 kg bamya, 1.5 kg et, 5 limon, salça.", p: "Bamyaları temizleyip et ve limonla salçalı suda pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" },
+    { t: "Domatesli Makarna", s: "• Yoğurt<br>• Köfte", i: "2 kg makarna, 1 kg domates, sarımsak, tereyağı.", p: "Makarnayı haşlayın, sarımsaklı domates sosuyla karıştırın.", g: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
+    { t: "Kıymalı Ispanak", s: "• Sarımsaklı Yoğurt<br>• Domatesli Pilav", i: "4 kg ıspanak, 1 kg kıyma, soğan, pirinç.", p: "Kıymayı kavurup ıspanakları ekleyin, az pirinçle pişirin.", g: "https://images.unsplash.com/photo-1515471204-ad93e284e850?w=800" },
+    { t: "Kabak Tatlısı", s: "• Tahin<br>• Ceviz İçi", i: "5 kg bal kabağı, 2 kg şeker, karanfil.", p: "Kabakları şekerle bekletip kendi suyunda pişirin.", g: "https://images.unsplash.com/photo-1506084868730-342b1f8505b0?w=800" },
+    { t: "Mercimek Çorbası", s: "• Kıtır Ekmek<br>• Limon", i: "1.5 kg kırmızı mercimek, soğan, havuç, patates.", p: "Sebzeleri haşlayıp blenderdan geçirin, üzerine yağ yakın.", g: "https://images.unsplash.com/photo-1547592115-859fb8f2b3be?w=800" },
+    { t: "Sebzeli Graten", s: "• Izgara Tavuk<br>• Ayran", i: "2 kg karışık sebze, 1 lt süt, un, kaşar peyniri.", p: "Sebzeleri haşlayın, beşamel sos ve kaşarla fırınlayın.", g: "https://images.unsplash.com/photo-1604467732921-0c5a29f86ca6?w=800" },
+    { t: "Ali Nazik", s: "• Pilav<br>• Közlenmiş Biber", i: "3 kg et, 15 patlıcan, süzme yoğurt, sarımsak.", p: "Köz patlıcanı yoğurtla karıştırın, üzerine kavrulmuş etleri ekleyin.", g: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" },
+    { t: "Türlü", s: "• Bulgur Pilavı<br>• Cacık", i: "2 kg karışık sebze, 1 kg et, soğan, salça.", p: "Tüm sebzeleri ve eti tencerede pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" },
+    { t: "Kıymalı Bezelye", s: "• Pirinç Pilavı<br>• Salata", i: "3 kg bezelye, 1 kg kıyma, havuç, patates.", p: "Kıymayı kavurup sebzelerle beraber pişirin.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800" },
+    { t: "Şehriyeli Pirinç Pilavı", s: "• Tüm Yemekler İçin Uygundur", i: "2 kg pirinç, 2 sb tel şehriye, tereyağı, tavuk suyu.", p: "Şehriyeleri kavurun, pirinçle beraber pişirin.", g: "https://images.unsplash.com/photo-1512058560366-cd2427ff56f3?w=800" },
+    { t: "Bulgur Pilavı", s: "• Etli Yemekler<br>• Ayran", i: "2 kg pilavlık bulgur, soğan, salça, domates.", p: "Soğan ve salçayı kavurup bulguru ekleyerek pişirin.", g: "https://images.unsplash.com/photo-1512058560366-cd2427ff56f3?w=800" },
+    { t: "Domates Çorbası", s: "• Rendelenmiş Kaşar<br>• Kıtır Ekmek", i: "3 kg domates, 1 lt süt, un, tereyağı.", p: "Domatesleri közleyin veya rendeleyin, unlu meyane ile pişirin.", g: "https://images.unsplash.com/photo-1547592115-859fb8f2b3be?w=800" },
+    { t: "Piyaz", s: "• Köfte<br>• Izgara Et", i: "2 kg kuru fasulye, soğan, maydanoz, tahin veya sirke.", p: "Fasulyeleri haşlayıp diğer malzemelerle karıştırın.", g: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" },
+    { t: "Yoğurtlu Semizotu", s: "• Mezeler<br>• Izgara Tavuk", i: "3 demet semizotu, 2 kg yoğurt, sarımsak, zeytinyağı.", p: "Semizotunu sarımsaklı yoğurtla karıştırın.", g: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
+    { t: "Köz Patlıcan Salatası", s: "• Kebaplar<br>• Et Yemekleri", i: "10 patlıcan, 5 biber, sarımsak, sirke.", p: "Sebzeleri közleyip doğrayın, sosla karıştırın.", g: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" },
+    { t: "Cacık", s: "• Kuru Fasulye<br>• Pilavlar", i: "3 kg yoğurt, 10 salatalık, nane, dereotu.", p: "Yoğurdu sulandırıp rendelenmiş salatalıkla karıştırın.", g: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
+    { t: "Revani", s: "• Dondurma<br>• Çay", i: "10 yumurta, 2 sb irmik, un, şerbet.", p: "Keki pişirip soğuk şerbeti dökün.", g: "https://images.unsplash.com/photo-1506084868730-342b1f8505b0?w=800" },
+    { t: "Sütlaç", s: "• Fındık İçi<br>• Tarçın", i: "5 lt süt, 2 sb pirinç, 3 sb şeker, nişasta.", p: "Sütü şeker ve haşlanmış pirinçle pişirip fırınlayın.", g: "https://images.unsplash.com/photo-1506084868730-342b1f8505b0?w=800" },
+    { t: "İrmik Helvası", s: "• Dondurma", i: "2 kg irmik, 1 kg tereyağı, şeker, süt.", p: "İrmiği tereyağında kavurup sütlü şerbetini ekleyin.", g: "https://images.unsplash.com/photo-1506084868730-342b1f8505b0?w=800" },
+    { t: "Menemen", s: "• Beyaz Peynir<br>• Çay", i: "20 yumurta, 10 domates, 10 biber.", p: "Biber ve domatesi soteleyip yumurtaları ekleyin.", g: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800" },
+    { t: "Fırın Makarna", s: "• Mevsim Salata", i: "2 kg kalın makarna, peynir, süt, un.", p: "Makarnayı haşlayıp beşamel sosla fırınlayın.", g: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
+    { t: "Tavuklu Pilav", s: "• Turşu<br>• Ayran", i: "3 kg tavuk, 2 kg pirinç, karabiber.", p: "Tavukları haşlayıp didikleyin, pilavın üzerine koyun.", g: "https://images.unsplash.com/photo-1512058560366-cd2427ff56f3?w=800" },
+    { t: "Zeytinyağlı Kızartmalar", s: "• Domates Sosu<br>• Yoğurt", i: "5 kg kabak/patlıcan, un, zeytinyağı.", p: "Sebzeleri unlayıp kızartın, sos ekleyin.", g: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" },
+    { t: "Patates Salatası", s: "• Çay Saati", i: "5 kg patates, taze soğan, maydanoz, limon.", p: "Haşlanmış patatesleri doğrayıp sosla karıştırın.", g: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" },
+    { t: "Mercimek Köftesi", s: "• Marul<br>• Turşu", i: "1 kg kırmızı mercimek, 1.5 kg ince bulgur, salça, soğan.", p: "Mercimeği haşlayıp bulgurla demlendirin, harcı yoğurun.", g: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800" },
+    { t: "Et Sote", s: "• Pirinç Pilavı<br>• Mevsim Salata", i: "3 kg dana kuşbaşı, biber, domates, soğan.", p: "Etleri sebzelerle yüksek ateşte soteleyin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" }
 ];

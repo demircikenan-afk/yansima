@@ -6,115 +6,98 @@
     <title>Yansıma Mutfak</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --dark-green: #14532d; --pastel-green: #ecf3ee; --pastel-orange: #ffedd5; --white: #ffffff; }
-        
-        /* Sayfa yapısını telefona tam sığacak şekilde ayarladık */
-        body { background: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; padding: 0; height: 100vh; width: 100vw; display: flex; justify-content: center; overflow: hidden; }
+        :root { --dark-green: #14532d; --white: #ffffff; }
+        body { background: #e2e8f0; font-family: 'Inter', sans-serif; margin: 0; padding: 0; height: 100vh; display: flex; justify-content: center; overflow: hidden; }
         
         .app-container { width: 100%; max-width: 420px; height: 100%; background: #fafaf9; border: 6px solid var(--dark-green); position: relative; display: flex; flex-direction: column; box-sizing: border-box; }
         
-        /* İçerik alanına alt menü kadar boşluk verdik */
-        .content { flex: 1; overflow-y: auto; padding-bottom: 90px; -webkit-overflow-scrolling: touch; }
+        /* İçerik alanını biraz daha yukarıda bitiriyoruz */
+        .content { flex: 1; overflow-y: auto; padding-bottom: 120px; -webkit-overflow-scrolling: touch; }
         
-        .header { text-align: center; padding: 12px; background: var(--white); border-bottom: 1px solid #eee; }
-        .header h1 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; color: var(--dark-green); letter-spacing: 1px; }
+        .header { text-align: center; padding: 10px; background: var(--white); border-bottom: 1px solid #eee; }
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 20px; margin: 0; color: var(--dark-green); }
         
-        .main-img { width: 92%; height: 200px; border-radius: 20px; object-fit: cover; margin: 15px auto; display: block; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .main-img { width: 90%; height: 180px; border-radius: 20px; object-fit: cover; margin: 10px auto; display: block; }
         
-        .info-card { background: var(--white); border-radius: 25px; padding: 18px; margin: 0 12px 20px 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .dish-title { font-size: 22px; font-family: 'Playfair Display', serif; color: #1e293b; margin: 5px 0 12px 0; }
+        .info-card { background: var(--white); border-radius: 25px; padding: 15px; margin: 0 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .dish-title { font-size: 20px; font-family: 'Playfair Display', serif; margin: 5px 0; }
 
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-        .stat-box { padding: 10px; border-radius: 15px; text-align: center; }
-        .stat-val { display: block; font-weight: 800; font-size: 14px; color: var(--dark-green); }
-        .stat-label { font-size: 10px; color: #64748b; font-weight: 600; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        .stat-box { padding: 8px; border-radius: 12px; text-align: center; background: #f0fdf4; }
+        .stat-val { display: block; font-weight: 800; font-size: 13px; color: var(--dark-green); }
 
-        .side-menu-box { background: #f8fafc; padding: 12px; border-radius: 18px; margin-bottom: 15px; border-left: 5px solid var(--dark-green); }
+        .side-menu-box { background: #f8fafc; padding: 10px; border-radius: 15px; margin-bottom: 10px; border-left: 4px solid var(--dark-green); font-size: 13px; }
         
-        .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 5px; }
+        .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .btn { border: none; padding: 12px; border-radius: 12px; font-weight: 800; cursor: pointer; font-size: 12px; }
         .btn-green { background: var(--dark-green); color: white; grid-column: span 2; margin-bottom: 5px; }
-        .btn-outline { background: var(--pastel-orange); color: var(--dark-green); border: 1px solid var(--dark-green); }
+        .btn-outline { background: #ffedd5; color: var(--dark-green); border: 1px solid var(--dark-green); }
 
-        /* ALT MENÜ FIX: Daha belirgin ve yukarıda */
-        .nav-bar { position: absolute; bottom: 0; width: 100%; height: 75px; background: white; display: flex; border-top: 3px solid var(--dark-green); box-shadow: 0 -5px 10px rgba(0,0,0,0.05); z-index: 100; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #94a3b8; cursor: pointer; }
-        .nav-item.active { color: var(--dark-green); background: #f0fdf4; }
+        /* NAV-BAR: Havaya kaldırdık (bottom: 20px) ve altına boşluk verdik */
+        .nav-bar { 
+            position: absolute; 
+            bottom: 15px; 
+            left: 10px; 
+            right: 10px; 
+            height: 65px; 
+            background: white; 
+            display: flex; 
+            border: 2px solid var(--dark-green); 
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+            z-index: 999; 
+        }
+        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #94a3b8; }
+        .nav-item.active { color: var(--dark-green); }
 
-        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 85%; background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; z-index: 200; transition: 0.4s ease-out; padding: 25px; box-sizing: border-box; overflow-y: auto; }
+        .modal { position: absolute; bottom: -100%; left: 0; width: 100%; height: 80%; background: white; border-top-left-radius: 30px; border-top-right-radius: 30px; z-index: 1000; transition: 0.4s; padding: 20px; box-sizing: border-box; overflow-y: auto; }
         .modal.open { bottom: 0; }
-        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 150; }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 998; }
     </style>
 </head>
 <body>
 <div class="overlay" id="overlay" onclick="closeModal()"></div>
 <div class="app-container">
     <div class="header"><h1>YANSIMA</h1></div>
-    
     <div class="content">
         <img id="m-img" src="" class="main-img">
         <div class="info-card">
-            <span style="font-size: 10px; font-weight: 800; color: var(--dark-green);">GÜNÜN ÖNERİSİ</span>
             <h2 class="dish-title" id="m-title">Yükleniyor...</h2>
-            
             <div class="stats-grid">
-                <div class="stat-box" style="background: var(--pastel-green);">
-                    <span class="stat-val">45-60 Dakika</span>
-                    <span class="stat-label">Süre</span>
-                </div>
-                <div class="stat-box" style="background: var(--pastel-orange);">
-                    <span class="stat-val">10 Kişilik</span>
-                    <span class="stat-label">Porsiyon</span>
-                </div>
+                <div class="stat-box"><span class="stat-val">45-60 Dk</span></div>
+                <div class="stat-box"><span class="stat-val">10 Kişilik</span></div>
             </div>
-
-            <div class="side-menu-box">
-                <small style="color:#94a3b8; font-weight:800;">YANINDA İYİ GİDER</small>
-                <div id="m-sides" style="margin-top:5px; font-size:13px; font-weight:500; line-height:1.4;"></div>
-            </div>
-
-            <button class="btn btn-green" onclick="openModal()">TARİF VE MALZEMELER</button>
+            <div class="side-menu-box" id="m-sides"></div>
+            <button class="btn btn-green" onclick="openModal()">TARİFİ GÖR</button>
             <div class="button-row">
-                <button class="btn btn-outline" onclick="prevMenu()">⬅ ÖNCEKİ</button>
+                <button class="btn btn-outline" onclick="prevMenu()">⬅ GERİ</button>
                 <button class="btn btn-outline" onclick="nextMenu()">SONRAKİ ➡</button>
             </div>
         </div>
     </div>
-
-    <div class="modal" id="recipeModal">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-            <h3 id="mod-title" style="margin:0; font-family:'Playfair Display'; color:var(--dark-green);">Tarif</h3>
-            <span onclick="closeModal()" style="font-size:30px; cursor:pointer;">&times;</span>
-        </div>
-        <p><strong>🛒 Malzemeler:</strong><br><span id="mod-ing" style="font-size:14px; color:#475569;"></span></p>
-        <p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="mod-steps" style="font-size:14px; color:#475569;"></span></p>
+    <div id="recipeModal" class="modal">
+        <h3 id="mod-title"></h3>
+        <p><strong>Malzemeler:</strong><br><span id="mod-ing"></span></p>
+        <p><strong>Hazırlanışı:</strong><br><span id="mod-steps"></span></p>
+        <button class="btn btn-green" onclick="closeModal()">KAPAT</button>
     </div>
-
     <div class="nav-bar">
         <div class="nav-item active">🏠<br>ANASAYFA</div>
-        <div class="nav-item" onclick="alert('Takvim Çok Yakında!')">📅<br>TAKVİM</div>
+        <div class="nav-item" onclick="alert('Takvim Yakında!')">📅<br>TAKVİM</div>
     </div>
 </div>
-
 <script>
     const allMenus = [
-        { t: "Kuru Fasulye", s: "• Pirinç Pilavı<br>• Karışık Turşu<br>• Cacık", i: "2 kg fasulye, 1 kg et, soğan, salça, baharat.", p: "Fasulyeleri haşlayın. Et ve soğanı kavurup salçayı ekleyin. Fasulyeleri ekleyip pişirin.", g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600" },
-        { t: "Etli Nohut", s: "• Bulgur Pilavı<br>• Gavurdağı Salata<br>• Ayran", i: "2 kg nohut, 1.5 kg et, 6 soğan, salça.", p: "Eti kavurup nohutları ekleyin. Yumuşayana kadar pişirin.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" },
-        { t: "Zeytinyağlı Enginar", s: "• Dereotlu Fava<br>• Yeşil Salata", i: "25 Enginar, havuç, patates, zeytinyağı.", p: "Sebzeleri kavurup enginarlarda pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=600" },
-        { t: "İskender Kebap", s: "• Yoğurt<br>• Köz Biber<br>• Şıra", i: "Döner eti, pide, tereyağı, domates sosu.", p: "Pideleri dizin, eti ve sosu ekleyip yağ gezdirin.", g: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600" },
-        { t: "Karnıyarık", s: "• Pirinç Pilavı<br>• Cacık", i: "Patlıcan, kıyma, domates, biber.", p: "Patlıcanları kızartıp kıymayla fırınlayın.", g: "https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?w=600" }
+        { t: "Kuru Fasulye", s: "• Pirinç Pilavı<br>• Turşu", i: "Fasulye, et, soğan, salça.", p: "Haşla ve pişir.", g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600" },
+        { t: "Etli Nohut", s: "• Bulgur Pilavı<br>• Ayran", i: "Nohut, et, salça.", p: "Eti kavur, nohudu ekle.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600" }
     ];
-
-    let current = 0;
-    let historyStack = [];
-
+    let current = 0; let historyStack = [];
     function update() {
         const m = allMenus[current];
         document.getElementById('m-title').innerText = m.t;
         document.getElementById('m-sides').innerHTML = m.s;
         document.getElementById('m-img').src = m.g;
     }
-
     function nextMenu() { historyStack.push(current); current = Math.floor(Math.random()*allMenus.length); update(); }
     function prevMenu() { if(historyStack.length>0) { current = historyStack.pop(); update(); } }
     function openModal() {

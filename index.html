@@ -3,24 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Yansıma Mutfak - Aylık Menü</title>
+    <title>Yansıma Mutfak - Özel Menü</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --dark-green: #14532d; --white: #ffffff; --bg: #f8fafc; }
         body { background: var(--bg); font-family: 'Inter', sans-serif; margin: 0; padding: 0; display: flex; justify-content: center; }
         .app-container { width: 100%; max-width: 450px; min-height: 100vh; background: #ffffff; position: relative; display: flex; flex-direction: column; box-shadow: 0 0 50px rgba(0,0,0,0.1); border-left: 5px solid var(--dark-green); border-right: 5px solid var(--dark-green); }
+        
+        /* Header */
         .header { text-align: center; padding: 20px; background: var(--white); border-bottom: 3px solid var(--dark-green); }
         .header h1 { font-family: 'Playfair Display', serif; font-size: 22px; margin: 0; color: var(--dark-green); letter-spacing: 2px; text-transform: uppercase; }
+
+        /* İçerik */
         .content { flex: 1; padding: 15px; padding-bottom: 80px; }
-        .main-img { width: 100%; height: 250px; border-radius: 20px; object-fit: cover; margin-bottom: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 2px solid #f1f5f9; }
+        .main-img { width: 100%; height: 240px; border-radius: 20px; object-fit: cover; margin-bottom: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); border: 2px solid #f1f5f9; }
+        
         .dish-title { font-size: 26px; font-family: 'Playfair Display', serif; color: #0f172a; margin: 0 0 10px 0; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
+        /* Menü Kutusu */
         .side-menu-box { background: #f0fdf4; padding: 18px; border-radius: 20px; margin-bottom: 20px; border-left: 5px solid var(--dark-green); }
         .side-menu-title { font-size: 11px; font-weight: 900; color: #166534; margin-bottom: 8px; display: block; text-transform: uppercase; }
         .side-menu-content { font-size: 15px; font-weight: 600; color: #334155; line-height: 1.6; }
+
+        /* Butonlar */
         .btn { border: none; padding: 16px; border-radius: 18px; font-weight: 800; cursor: pointer; font-size: 14px; width: 100%; margin-bottom: 10px; transition: 0.2s; }
         .btn-green { background: var(--dark-green); color: white; box-shadow: 0 4px 12px rgba(20,83,45,0.2); }
         .button-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .btn-outline { background: #fff; color: var(--dark-green); border: 2px solid var(--dark-green); }
+
+        /* Modallar */
         .modal, .list-modal { position: fixed; bottom: -100%; left: 0; right: 0; height: 85%; background: white; border-top-left-radius: 35px; border-top-right-radius: 35px; z-index: 1000; transition: 0.4s cubic-bezier(0, 1, 0.5, 1); padding: 25px; box-sizing: border-box; overflow-y: auto; box-shadow: 0 -10px 30px rgba(0,0,0,0.1); }
         .modal.open, .list-modal.open { bottom: 0; }
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; z-index: 999; }
@@ -28,31 +39,38 @@
 </head>
 <body>
     <div class="overlay" id="overlay" onclick="closeModals()"></div>
+
     <div class="app-container">
         <div class="header"><h1>YANSIMA MUTFAK</h1></div>
+
         <div class="content">
             <img id="dish-img" src="" class="main-img">
+            
             <h2 class="dish-title" id="dish-title">Yükleniyor...</h2>
+            
             <div class="side-menu-box">
                 <span class="side-menu-title">YANINDA İYİ GİDER (3'LÜ MENÜ)</span>
                 <div class="side-menu-content" id="dish-sides"></div>
             </div>
+
             <button class="btn btn-green" onclick="openRecipe()">TARİF VE MALZEMELER</button>
+            
             <div class="button-row">
                 <button class="btn btn-outline" onclick="prevDish()">⬅ GERİ</button>
                 <button class="btn btn-outline" onclick="nextDish()">SONRAKİ ➡</button>
             </div>
-            <button class="btn btn-outline" style="margin-top:20px; border-style: dashed;" onclick="openList()">🗓 AYLIK MENÜ ARŞİVİ</button>
+
+            <button class="btn btn-outline" style="margin-top:20px; border-style: dashed;" onclick="openList()">🗓 AYLIK MENÜ LİSTESİ</button>
         </div>
 
         <div class="modal" id="recipeModal">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2 id="modal-dish-title" style="font-family:'Playfair Display'; color:var(--dark-green);"></h2>
+                <h2 id="modal-dish-title" style="font-family:'Playfair Display'; color:var(--dark-green); margin:0;"></h2>
                 <span onclick="closeModals()" style="font-size:35px; cursor:pointer;">&times;</span>
             </div>
-            <p><strong>🛒 10 Kişilik Malzemeler:</strong><br><span id="modal-ing" style="white-space: pre-wrap;"></span></p>
+            <p><strong>🛒 10 Kişilik Malzemeler:</strong><br><span id="modal-ing" style="color:#475569;"></span></p>
             <hr>
-            <p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="modal-steps" style="white-space: pre-wrap;"></span></p>
+            <p><strong>👨‍🍳 Hazırlanışı:</strong><br><span id="modal-steps" style="color:#475569;"></span></p>
         </div>
 
         <div class="list-modal" id="listModal">
@@ -62,13 +80,35 @@
         </div>
     </div>
 
-    <script src="data.js"></script>
     <script>
+        // SENİN İSTEDİĞİN 18 YEMEK BURADA GÖMÜLÜ - HATA ŞANSI YOK
+        const dishes = [
+            { t: "Dondurucuda İnegöl Köfte", s: "• Salçalı Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Karışık Turşu", i: "2.5 kg kıyma (dana-kuzu), karbonat, soğan suyu, tuz.", p: "Dondurucudan çıkarıp çözdürmeden döküm tavada pişirin.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+            { t: "Lokanta Usulü Tavuk Haşlama", s: "• Şehriyeli Pirinç Pilavı<br>• Mevsim Salatası<br>• Sirkeli Sarımsaklı Sos", i: "5 kg tavuk but, 10 patates, 10 havuç, unlu limonlu terbiye.", p: "Tavuk ve sebzeleri haşlayın, terbiyesini ekleyip bir taşım kaynatın.", g: "https://images.unsplash.com/photo-1547592115-859fb8f2b3be?w=800" },
+            { t: "Lokanta Usulü Beyti Kebabı", s: "• Sarımsaklı Yoğurt<br>• Köz Biber<br>• Sumaklı Soğan", i: "3 kg kıyma, yufka, tereyağı, domates sosu.", p: "Köfteleri yufkaya sarın, üzerine sos ve yağ döküp fırınlayın.", g: "https://images.unsplash.com/photo-1633321702518-7feccafacdc1?w=800" },
+            { t: "Güveçte Kuşbaşılı Et", s: "• Sade Pilav<br>• Çoban Salata<br>• Ayran", i: "3 kg et, arpacık soğan, sarımsak, biber, tereyağı.", p: "Güveçte kısık ateşte veya fırında 2.5 saat pişirin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" },
+            { t: "Tavuk Döner", s: "• Lavaş<br>• Patates Kızartması<br>• Şalgam", i: "6 kg tavuk, yoğurtlu özel marinasyon.", p: "Dondurup ince kesin, sacda yüksek ateşte pişirin.", g: "https://images.unsplash.com/photo-1524338198832-7a9c18bd313c?w=800" },
+            { t: "Fırında Kuzu Kol", s: "• İç Pilav<br>• Ezme<br>• Köz Patlıcan", i: "2 adet bütün kuzu kol, sarımsak, biberiye.", p: "Fırında 160 derecede 4 saat tandır gibi pişirin.", g: "https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=800" },
+            { t: "Lokanta Usulü İzmir Köfte", s: "• Mercimek Çorbası<br>• Salata<br>• Cacık", i: "2.5 kg kıyma, patates, domates sosu.", p: "Köfte ve patatesi kızartıp sosla fırınlayın.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+            { t: "Lokanta Usulü Kavurma", s: "• Pirinç Pilavı<br>• Soğan Salatası<br>• Ayran", i: "4 kg et, iç yağı, tuz.", p: "Kendi suyunda ağır ateşte pişirin.", g: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800" },
+            { t: "Hazır Yufka Soslu Börek", s: "• Çay<br>• Domates Söğüş<br>• Peynir", i: "15 yufka, peynir, sütlü soda sosu.", p: "Yufkaları soslayıp peynirle döşeyin, fırınlayın.", g: "https://images.unsplash.com/photo-1608483129917-c70014b91501?w=800" },
+            { t: "Patlıcanlı Gözleme", s: "• Ayran<br>• Turşu<br>• Salata", i: "Yufka, sote patlıcanlı harç.", p: "Sacda pişirip yağlayın.", g: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800" },
+            { t: "Mayasız Gözleme", s: "• Çay<br>• Reçel<br>• Peynir", i: "Un, su, tuz.", p: "Hamuru açıp peynirle pişirin.", g: "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?w=800" },
+            { t: "Köfteli Hünkar Beğendi", s: "• Çorba<br>• Salata<br>• Tatlı", i: "Kıyma, patlıcan, beşamel sos.", p: "Beğendi yatağında köfteleri servis edin.", g: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800" },
+            { t: "Belen Tava", s: "• Pide<br>• Salata<br>• Şalgam", i: "Kuzu eti, sarımsak, biber, tereyağı.", p: "Tüm malzemeyi tepside karıştırıp fırınlayın.", g: "https://images.unsplash.com/photo-1590577976322-3d234ff38235?w=800" },
+            { t: "Şehriyeli Sulu Köfte", s: "• Turşu<br>• Salata<br>• Komposto", i: "Kıyma, patates, havuç, arpa şehriye.", p: "Tencerede terbiyeli olarak pişirin.", g: "https://images.unsplash.com/photo-1547592115-859fb8f2b3be?w=800" },
+            { t: "Fırında Köfte Patates", s: "• Bulgur Pilavı<br>• Cacık<br>• Salata", i: "Kıyma, patates, salçalı su.", p: "Tepside fırınlayın.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+            { t: "Soslu Köfte", s: "• Pilav<br>• Tarator<br>• Ayran", i: "Kıyma, sarımsaklı yoğun domates sosu.", p: "Kızartıp sosla çektirin.", g: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800" },
+            { t: "Domates Soslu Köfte", s: "• Makarna<br>• Salata<br>• Limonata", i: "Kıyma, taze domates rendesi.", p: "Domates sosunun içinde pişirin.", g: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" },
+            { t: "Sandal Köfte", s: "• Mısırlı Pilav<br>• Püre<br>• Salata", i: "Kıyma, garnitür, kaşar peyniri.", p: "Köftenin içini doldurup fırınlayın.", g: "https://images.unsplash.com/photo-1563805042-7684c849a135?w=800" }
+        ];
+
+        // SİSTEM AYARLARI
         let currentIndex = 0;
         let history = [];
 
         function render() {
-            if (typeof dishes === 'undefined' || dishes.length === 0) return;
+            if (dishes.length === 0) return;
             const dish = dishes[currentIndex];
             document.getElementById('dish-title').innerText = dish.t;
             document.getElementById('dish-sides').innerHTML = dish.s;
@@ -78,20 +118,46 @@
             document.getElementById('modal-steps').innerText = dish.p;
         }
 
-        function nextDish() { history.push(currentIndex); currentIndex = Math.floor(Math.random() * dishes.length); render(); }
-        function prevDish() { if (history.length > 0) { currentIndex = history.pop(); render(); } }
-        function openRecipe() { document.getElementById('recipeModal').classList.add('open'); document.getElementById('overlay').style.display = 'block'; }
-        
+        function nextDish() {
+            history.push(currentIndex);
+            currentIndex = Math.floor(Math.random() * dishes.length);
+            render();
+        }
+
+        function prevDish() {
+            if (history.length > 0) {
+                currentIndex = history.pop();
+                render();
+            }
+        }
+
+        function openRecipe() { 
+            document.getElementById('recipeModal').classList.add('open');
+            document.getElementById('overlay').style.display = 'block';
+        }
+
         function openList() {
             const listDiv = document.getElementById('all-dishes-list');
-            listDiv.innerHTML = dishes.map((d, i) => `<div onclick="goTo(${i})" style="border-bottom:1px solid #eee; padding:5px 0; color:#475569; cursor:pointer;">${i+1}. ${d.t}</div>`).join('');
+            listDiv.innerHTML = dishes.map((d, i) => 
+                `<div onclick="goTo(${i})" style="border-bottom:1px solid #eee; padding:10px 0; color:#475569; cursor:pointer;">
+                    ${i+1}. ${d.t}
+                </div>`
+            ).join('');
             document.getElementById('listModal').classList.add('open');
             document.getElementById('overlay').style.display = 'block';
         }
 
-        function goTo(i) { currentIndex = i; render(); closeModals(); window.scrollTo(0,0); }
-        function closeModals() { document.querySelectorAll('.modal, .list-modal').forEach(m => m.classList.remove('open')); document.getElementById('overlay').style.display = 'none'; }
-        
+        function goTo(index) {
+            currentIndex = index;
+            render();
+            closeModals();
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal, .list-modal').forEach(m => m.classList.remove('open'));
+            document.getElementById('overlay').style.display = 'none';
+        }
+
         window.onload = render;
     </script>
 </body>

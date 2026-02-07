@@ -94,13 +94,9 @@
     </div>
 </div>
 
-<script>
-    const allMenus = [
-        { t: "Kuru Fasulye", s: "• Pirinç Pilavı<br>• Karışık Turşu<br>• Buz Gibi Cacık", i: "2 kg kuru fasulye, 1 kg kuşbaşı et, 5 soğan, salça, baharatlar.", p: "Fasulyeleri haşlayın. Et ve soğanları kavurup salçayı ekleyin. Fasulyeleri birleştirip ağır ateşte pişirin.", g: "https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800" },
-        { t: "Etli Nohut", s: "• Şehriyeli Bulgur Pilavı<br>• Gavurdağı Salatası<br>• Ayran", i: "2 kg nohut, 1.5 kg kuzu eti, 6 soğan, salça, kimyon.", p: "Eti kavurun, soğan ve salçayla nohutları ekleyip sıcak su ile pişirin.", g: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800" },
-        { t: "Zeytinyağlı Enginar", s: "• Dereotlu Fava<br>• Yeşil Mevsim Salatası", i: "25 Enginar, 6 havuç, 6 patates, zeytinyağı, bezelye.", p: "Garnitürleri soteleyip enginarların içine doldurun, limonlu suda pişirin.", g: "https://images.unsplash.com/photo-1515543904379-3d757afe72e2?w=800" }
-    ];
+<script src="data.js"></script>
 
+<script>
     let current = 0;
     let historyStack = [];
 
@@ -111,8 +107,19 @@
         document.getElementById('m-img').src = m.g;
     }
 
-    function nextMenu() { historyStack.push(current); current = Math.floor(Math.random()*allMenus.length); update(); }
-    function prevMenu() { if(historyStack.length>0) { current = historyStack.pop(); update(); } }
+    function nextMenu() { 
+        historyStack.push(current); 
+        current = Math.floor(Math.random() * allMenus.length); 
+        update(); 
+    }
+
+    function prevMenu() { 
+        if(historyStack.length > 0) { 
+            current = historyStack.pop(); 
+            update(); 
+        } 
+    }
+
     function openModal() {
         const m = allMenus[current];
         document.getElementById('mod-title').innerText = m.t;
@@ -121,8 +128,14 @@
         document.getElementById('recipeModal').classList.add('open');
         document.getElementById('overlay').style.display = 'block';
     }
-    function closeModal() { document.getElementById('recipeModal').classList.remove('open'); document.getElementById('overlay').style.display = 'none'; }
+
+    function closeModal() { 
+        document.getElementById('recipeModal').classList.remove('open'); 
+        document.getElementById('overlay').style.display = 'none'; 
+    }
+    
     update();
 </script>
 </body>
 </html>
+

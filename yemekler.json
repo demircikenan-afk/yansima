@@ -3,27 +3,27 @@
         "title": "Fırın Kuzu İncik",
         "time": "120 dk",
         "type": "Ziyafet",
-        "sides": "• Bademli İç Pilav <br>• Naneli Haydari <br>• Şalgam Suyu",
-        "ing": "Kuzu incik, kekik, sarımsak, taze biberiye, zeytinyağı.",
-        "steps": "Etleri mühürleyin, sebzelerle 180 derece fırında 2 saat pişirin.",
-        "img": "https://images.unsplash.com/photo-1559847844-5ee1579da3b7?w=600"
+        "sides": "• Bademli İç Pilav <br>• Naneli Haydari <br>• Mevsim Salatası",
+        "ing": "4 adet kuzu incik, 2 dal taze kekik, 4 diş sarımsak, zeytinyağı, tuz, tane karabiber.",
+        "steps": "İncikleri yüksek ateşte mühürleyin. Fırın kabına alıp sarımsak ve kekik ekleyin. 180 derecede etler kemikten ayrılana kadar yaklaşık 2 saat pişirin.",
+        "img": "https://images.unsplash.com/photo-1559847844-5ee1579da3b7?w=800"
     },
     {
         "title": "Izgara Levrek",
         "time": "30 dk",
         "type": "Hafif",
-        "sides": "• Roka Salatası <br>• Hardal Soslu Patates <br>• Taze Limonata",
-        "ing": "Levrek fileto, deniz tuzu, sızma zeytinyağı, limon.",
-        "steps": "Balıkları ızgara tavasında her iki yüzü çıtırlaşana kadar pişirin.",
-        "img": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600"
+        "sides": "• Roka Salatası <br>• Hardal Soslu Patates <br>• Taze Sıkılmış Limonata",
+        "ing": "2 adet deniz levreği, sızma zeytinyağı, yarım limon, deniz tuzu, defne yaprağı.",
+        "steps": "Levrekleri temizleyip kurulayın. Zeytinyağı ve tuzla ovarak ızgara tavasında her iki yüzünü de 8-10 dakika, derisi çıtırlaşana kadar pişirin.",
+        "img": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800"
     },
     {
         "title": "Kayseri Mantısı",
         "time": "60 dk",
         "type": "Yöresel",
-        "sides": "• Sumaklı Yoğurt <br>• Tereyağlı Sos <br>• Ev Yapımı Ayran",
-        "ing": "Mantılık un, dana kıyma, ince kıyılmış soğan, baharat.",
-        "steps": "Hamurları küçük kareler halinde kapatıp haşlayın, sosla servis edin.",
-        "img": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600"
+        "sides": "• Sumaklı Yoğurt <br>• Tereyağlı Pul Biberli Sos <br>• Ev Yapımı Ayran",
+        "ing": "Hamur için: 3 bardak un, 1 yumurta. İç harç: 250gr kıyma, 1 adet rendelenmiş soğan, karabiber, tuz.",
+        "steps": "Hamuru ince açıp küçük kareler kesin. Harcı koyup kapatın. Bol suda haşlayıp, sarımsaklı yoğurt ve kızdırılmış tereyağı ile servis edin.",
+        "img": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800"
     }
 ]

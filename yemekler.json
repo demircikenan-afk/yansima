@@ -1,0 +1,29 @@
+[
+    {
+        "title": "Fırın Kuzu İncik",
+        "time": "120 dk",
+        "type": "Ziyafet",
+        "sides": "• Bademli İç Pilav <br>• Naneli Haydari <br>• Şalgam Suyu",
+        "ing": "Kuzu incik, kekik, sarımsak, taze biberiye, zeytinyağı.",
+        "steps": "Etleri mühürleyin, sebzelerle 180 derece fırında 2 saat pişirin.",
+        "img": "https://images.unsplash.com/photo-1559847844-5ee1579da3b7?w=600"
+    },
+    {
+        "title": "Izgara Levrek",
+        "time": "30 dk",
+        "type": "Hafif",
+        "sides": "• Roka Salatası <br>• Hardal Soslu Patates <br>• Taze Limonata",
+        "ing": "Levrek fileto, deniz tuzu, sızma zeytinyağı, limon.",
+        "steps": "Balıkları ızgara tavasında her iki yüzü çıtırlaşana kadar pişirin.",
+        "img": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600"
+    },
+    {
+        "title": "Kayseri Mantısı",
+        "time": "60 dk",
+        "type": "Yöresel",
+        "sides": "• Sumaklı Yoğurt <br>• Tereyağlı Sos <br>• Ev Yapımı Ayran",
+        "ing": "Mantılık un, dana kıyma, ince kıyılmış soğan, baharat.",
+        "steps": "Hamurları küçük kareler halinde kapatıp haşlayın, sosla servis edin.",
+        "img": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600"
+    }
+]

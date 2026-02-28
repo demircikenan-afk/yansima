@@ -6,7 +6,7 @@
     "icon": "🚀",
     "color": "0xFF3F51B5",
     "content": "Cano bugün çok heyecanlıydı..."
-  },  <-- BURADAKİ VİRGÜL "YENİ BİR KİTAP GELİYOR" DEMEK
+  },
   {
     "id": 102,
     "title": "Mavi Balonun Peşinde",
@@ -14,5 +14,5 @@
     "icon": "🎈",
     "color": "0xFFFF4081",
     "content": "Rüzgarlı bir günde mavi balon..."
-  }   <-- BURADA VİRGÜL YOK ÇÜNKÜ BU SON KİTAP!
+  } 
 ]

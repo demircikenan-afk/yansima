@@ -6,7 +6,8 @@
     "icon": "🚀",
     "color": "0xFF3F51B5",
     "content": "Cano bugün çok heyecanlıydı. Kendi yaptığı uzay gemisi ile Mars'a gitmeye karar verdi. Yıldızların arasından geçerken arkadaşı robot ona el salladı. Uzayda yer çekimi olmadığı için meyve suları havada uçuşuyordu!"
-  },Evet, JSON formatı bilgisayarın dilidir. Virgülüne, parantezine dikkat ettiğin sürece bu format en sağlamıdır. Ama sana bir kıyak yapayım; bu dosyayı her seferinde sıfırdan yazma. En son eklediğin kitabın sonundaki } işaretinden sonra bir virgül , koyup yenisini altına yapıştıracaksın.
+  },
+  Evet, JSON formatı bilgisayarın dilidir. Virgülüne, parantezine dikkat ettiğin sürece bu format en sağlamıdır. Ama sana bir kıyak yapayım; bu dosyayı her seferinde sıfırdan yazma. En son eklediğin kitabın sonundaki } işaretinden sonra bir virgül , koyup yenisini altına yapıştıracaksın.
   {
     "id": 102,
     "title": "Mavi Balonun Peşinde",

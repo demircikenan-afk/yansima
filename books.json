@@ -5,22 +5,22 @@
     "age": 12,
     "icon": "🚀",
     "color": "0xFF3F51B5",
-    "content": "Cano bugün çok heyecanlıydı. Kendi yaptığı uzay gemisi ile Mars'a gitmeye karar verdi. Yıldızların arasından geçerken arkadaşı robot ona el salladı. Uzayda yer çekimi olmadığı için meyve suları havada uçuşuyordu!"
+    "content": "Cano bugün çok heyecanlıydı. Kendi yaptığı uzay gemisi ile Mars'a gitmeye karar verdi. Yıldızların arasından geçerken arkadaşı robot ona el salladı."
   },
-  
+  {
     "id": 102,
     "title": "Mavi Balonun Peşinde",
-    "age": 8,
+    "age": 12,
     "icon": "🎈",
     "color": "0xFFFF4081",
     "content": "Rüzgarlı bir günde mavi balon gökyüzüne kaçtı. Ali balonun arkasından koştu ama yetişemedi. Balon bulutların arasına gizlendi."
-  },
-    {
-    "id": 101,
-    "title": "Cano ve Uzay Gemisi",
+  }
+  {
+    "id": 102,
+    "title": "Mavi Balonun Peşinde",
     "age": 12,
-    "icon": "🚀",
-    "color": "0xFF3F51B5",
-    "content": "Cano bugün çok heyecanlıydı. Kendi yaptığı uzay gemisi ile Mars'a gitmeye karar verdi. Yıldızların arasından geçerken arkadaşı robot ona el salladı. Uzayda yer çekimi olmadığı için meyve suları havada uçuşuyordu!"
-  },
+    "icon": "🎈",
+    "color": "0xFFFF4081",
+    "content": "Rüzgarlı bir günde mavi balon gökyüzüne kaçtı. Ali balonun arkasından koştu ama yetişemedi. Balon bulutların arasına gizlendi."
+  }
 ]
